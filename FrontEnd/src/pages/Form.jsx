@@ -143,9 +143,10 @@ export default function Form() {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100 text-[#1E1E1E]">
-      <aside className="w-64 bg-[#1E1E1E] text-white p-6 hidden md:block">
-        <h2 className="text-2xl font-bold mb-10">IPMAT Tools</h2>
+    <div className="min-h-screen flex bg-[#121212] text-white">
+      {/* Sidebar */}
+      <aside className="w-64 bg-[#1F1F1F] p-6 hidden md:block">
+        <h2 className="text-2xl font-bold mb-10 text-white">IPMAT Tools</h2>
         <nav className="space-y-4">
           <div className="text-sm text-gray-400 uppercase tracking-wide">Exams</div>
           {["indore", "rohtak", "jipmat"].map((id) => (
@@ -162,8 +163,9 @@ export default function Form() {
         </nav>
       </aside>
 
-      <div className="flex-1 bg-white">
-        <header className="bg-[#1E1E1E] py-5 px-8 shadow-md">
+      {/* Main Content */}
+      <div className="flex-1">
+        <header className="bg-[#1F1F1F] py-5 px-8 shadow-md">
           <h1 className="text-2xl font-bold text-white">IPMAT Call Predictor 2026</h1>
         </header>
 
@@ -179,7 +181,7 @@ export default function Form() {
                   value={formData.phone}
                   placeholder="10-digit number"
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-blue-500 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-200"
+                  className="w-full px-4 py-3 border-2 border-blue-500 bg-[#2A2A2A] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                   required
                 />
               </div>
@@ -189,7 +191,7 @@ export default function Form() {
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-blue-500 rounded-lg"
+                  className="w-full px-4 py-3 border-2 border-blue-500 bg-[#2A2A2A] rounded-lg text-white"
                 >
                   <option>General</option>
                   <option>EWS</option>
@@ -205,7 +207,7 @@ export default function Form() {
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-blue-500 rounded-lg"
+                  className="w-full px-4 py-3 border-2 border-blue-500 bg-[#2A2A2A] rounded-lg text-white"
                 >
                   <option>Male</option>
                   <option>Female</option>
@@ -218,20 +220,20 @@ export default function Form() {
                   type="checkbox"
                   checked={formData.isPWD}
                   onChange={handleChange}
-                  className="h-6 w-6 text-blue-600 rounded focus:ring-blue-500"
+                  className="h-6 w-6 text-blue-500 rounded focus:ring-blue-400"
                 />
                 <label className="ml-3 text-lg font-medium">PWD Candidate?</label>
               </div>
             </section>
 
             {/* Academic Records */}
-            <section className="bg-blue-50 p-6 rounded-xl">
+            <section className="bg-[#1E1E1E] p-6 rounded-xl border border-gray-700">
               <h3 className="text-lg font-semibold mb-5">Academic Records</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Input label="10th Percentage" name="tenPercentage" value={formData.tenPercentage} onChange={handleChange} placeholder="e.g. 95.6" step="0.1"/>
                 <div>
                   <label className="block text-sm font-medium mb-2">10th Board</label>
-                  <select name="tenBoard" value={formData.tenBoard} onChange={handleChange} className="w-full px-4 py-3 border-2 border-blue-500 rounded-lg">
+                  <select name="tenBoard" value={formData.tenBoard} onChange={handleChange} className="w-full px-4 py-3 border-2 border-blue-500 bg-[#2A2A2A] rounded-lg text-white">
                     <option>CBSE</option>
                     <option>ICSE</option>
                     <option>State Board</option>
@@ -241,7 +243,7 @@ export default function Form() {
                 <Input label="12th Percentage" name="twelvePercentage" value={formData.twelvePercentage} onChange={handleChange} placeholder="e.g. 96.4" step="0.1"/>
                 <div>
                   <label className="block text-sm font-medium mb-2">12th Stream</label>
-                  <select name="stream" value={formData.stream} onChange={handleChange} className="w-full px-4 py-3 border-2 border-blue-500 rounded-lg">
+                  <select name="stream" value={formData.stream} onChange={handleChange} className="w-full px-4 py-3 border-2 border-blue-500 bg-[#2A2A2A] rounded-lg text-white">
                     <option>Commerce</option>
                     <option>Science (PCM)</option>
                     <option>Science (PCB)</option>
@@ -283,7 +285,7 @@ export default function Form() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-5 bg-[#2563EB] hover:bg-blue-700 disabled:bg-blue-400 text-white text-xl font-bold rounded-xl shadow-lg transition transform hover:scale-105"
+              className="w-full py-5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-xl font-bold rounded-xl shadow-lg transition transform hover:scale-105"
             >
               {loading ? "Predicting Your Chances..." : "Predict My Call Chances"}
             </button>
@@ -313,7 +315,7 @@ function Input({ label, name, value, onChange, placeholder, min, max, step }) {
         min={min || 0}
         max={max}
         step={step || "1"}
-        className="w-full px-4 py-3 border-2 border-blue-500 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-200"
+        className="w-full px-4 py-3 border-2 border-blue-500 bg-[#2A2A2A] rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
         required
       />
     </div>
