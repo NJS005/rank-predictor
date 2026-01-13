@@ -19,12 +19,7 @@ export default function ResultPage() {
     );
   }
 
-  const scores = [
-    Number(data.score1 || 0),
-    Number(data.score2 || 0),
-    Number(data.score3 || 0)
-  ];
-
+  const scores = [Number(data.score1 || 0), Number(data.score2 || 0), Number(data.score3 || 0)];
   const totalScore = data.totalScore || scores.reduce((a, b) => a + b, 0);
   const probability = data.probability || "Low";
   const clearsSectionals = data.clearsSectionals ?? false;
@@ -38,21 +33,13 @@ export default function ResultPage() {
     Low: "text-red-700 bg-red-50 border-red-200",
   };
 
-  const examName = {
-    indore: "IPMAT Indore",
-    rohtak: "IPMAT Rohtak",
-    jipmat: "JIPMAT",
-  }[data.exam] || "IPMAT";
+  const examName = { indore: "IPMAT Indore", rohtak: "IPMAT Rohtak", jipmat: "JIPMAT" }[data.exam] || "IPMAT";
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-        
-        {/* Header */}
         <div className="bg-[#1E1E1E] p-8 text-white text-center">
-          <p className="text-sm uppercase tracking-widest text-blue-400 font-bold mb-2">
-            {examName} 2026 Prediction
-          </p>
+          <p className="text-sm uppercase tracking-widest text-blue-400 font-bold mb-2">{examName} 2026 Prediction</p>
           <h1 className="text-3xl font-bold">Your Call Chances</h1>
         </div>
 
@@ -75,17 +62,17 @@ export default function ResultPage() {
             </div>
           </div>
 
-          {/* Sectional Scores with Progress Visualization */}
+          {/* Sectional Scores */}
           <div className="bg-white border border-gray-100 p-6 rounded-xl mb-8 shadow-sm">
             <h3 className="font-bold text-gray-800 text-lg mb-6 flex justify-between">
               Sectional Breakdown
               {data.exam === "indore" && (
                 <span className={`text-xs px-2 py-1 rounded ${clearsSectionals ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                   {clearsSectionals ? "Sectionals Cleared ✅" : "Sectionals Not Met ❌"}
+                  {clearsSectionals ? "Sectionals Cleared ✅" : "Sectionals Not Met ❌"}
                 </span>
               )}
             </h3>
-            
+
             <div className="space-y-6">
               {sectionNames.map((name, index) => (
                 <div key={index}>
@@ -93,12 +80,10 @@ export default function ResultPage() {
                     <span className="font-medium text-gray-600">{name}</span>
                     <span className="font-bold">{scores[index]} / {maxMarks[index]}</span>
                   </div>
-                  {/* Visual Score Bar */}
                   <div className="w-full bg-gray-100 rounded-full h-2">
-                    <div 
-                      className="bg-blue-500 h-2 rounded-full transition-all duration-1000" 
-                      style={{ width: `${Math.min(100, (scores[index] / maxMarks[index]) * 100)}%` }}
-                    ></div>
+                    <div className="bg-blue-500 h-2 rounded-full transition-all duration-1000" 
+                         style={{ width: `${Math.min(100, (scores[index] / maxMarks[index]) * 100)}%` }}>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -113,9 +98,9 @@ export default function ResultPage() {
               {probability === "Low" && "💡 Don't Lose Heart!"}
             </h4>
             <p className="text-sm leading-relaxed">
-              {probability === "High" && "Your scores are significantly above the expected cutoff. Focus heavily on PI (Personal Interview) and WAT (Written Ability Test) preparation now."}
-              {probability === "Borderline" && "You are right on the edge. Every mark in the interview will count. Start practicing your 'Why IPM?' answer immediately."}
-              {probability === "Low" && "The competition is tough this year. Use this as a diagnostic tool—identify which section held you back and target it for your next attempt or other entrance exams."}
+              {probability === "High" && "Your scores are significantly above the expected cutoff. Focus on PI & WAT preparation."}
+              {probability === "Borderline" && "You are right on the edge. Every mark in the interview will count."}
+              {probability === "Low" && "Use this as a diagnostic tool—identify weak sections for improvement."}
             </p>
           </div>
 
