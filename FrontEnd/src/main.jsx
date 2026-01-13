@@ -1,11 +1,17 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
-// Using the Tailwind Play CDN for quick verification; the project also contains
-// `src/styles.css` with Tailwind directives but it's not imported here to avoid
-// PostCSS plugin issues during local build in this environment.
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Form from './pages/Form'
+import ResultPage from './pages/Result'
+import './styles.css'
 
-
-const container = document.getElementById('root')
-const root = createRoot(container)
-root.render(<App />)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Form />} />
+        <Route path="/result" element={<ResultPage />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
+)

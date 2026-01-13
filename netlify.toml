@@ -1,0 +1,16 @@
+[build]
+  publish = "FrontEnd/dist"
+  command = "cd FrontEnd && npm run build"
+
+[functions]
+  directory = "FrontEnd/netlify/functions"
+
+[dev]
+  command = "cd FrontEnd && npm run dev"
+
+[redirects]
+# Map /api/* to Netlify Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
